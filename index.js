@@ -28,6 +28,10 @@ app.use("/api/users", userRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/bookings", bookingRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Hello world");
+});
+
 //connect to the database
 const connect = async () => {
   try {
