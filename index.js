@@ -16,12 +16,7 @@ const app = express();
 
 //middleware
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://hotel-frontend-alpha.vercel.app/",
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(helmet());
 
 app.use((req, res, next) => {
