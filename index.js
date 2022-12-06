@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
+const cors = require("cors");
 const userRoutes = require("./routes/user-routes");
 const hotelRoutes = require("./routes/hotel-routes");
 const authRoutes = require("./routes/auth-routes");
@@ -15,6 +16,7 @@ const app = express();
 
 //middleware
 app.use(express.json());
+app.use(cors());
 app.use(helmet());
 
 app.use((req, res, next) => {
