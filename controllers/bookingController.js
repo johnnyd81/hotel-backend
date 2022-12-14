@@ -2,10 +2,16 @@ const Booking = require("../models/Booking");
 
 //a new booking is created by a user in the frontend after they select a hotel and click the book now button
 const addBooking = async (req, res) => {
-  const newBooking = new Booking(req.body);
+  const { hotel, hotelid, username, totalDays, totalAmount } = req.body;
 
   try {
-    const booking = await newBooking.save();
+    const booking = await Booking.create({
+      hotel,
+      hotelid,
+      username,
+      totalDays,
+      totalAmount,
+    });
     res.status(200).json(booking);
   } catch (error) {
     res.status(400).json({ error: error.message });

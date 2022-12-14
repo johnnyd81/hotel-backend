@@ -36,4 +36,21 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { loginUser, signupUser };
+const loginAdmin = async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const user = await User.adminLogin(username, password);
+
+    const token = jwt.sign(
+      { id: user._id, isAdmin: user.isAdmin },
+      process.env.JWT
+    );
+
+    res.status(200).json({ username, token });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+module.exports = { loginUser, signupUser, loginAdmin };

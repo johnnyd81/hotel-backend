@@ -27,7 +27,7 @@ userSchema.statics.signup = async function (username, password) {
     throw Error("All fields must be filled");
   }
 
-  const exists = await this.findOne({ username });//checks if a username exists
+  const exists = await this.findOne({ username }); //checks if a username exists
 
   if (exists) {
     throw Error("Username already exists");
@@ -48,7 +48,7 @@ userSchema.statics.login = async function (username, password) {
     throw Error("All fields must be filled");
   }
 
-  const user = await this.findOne({ username });//checks if the username exists
+  const user = await this.findOne({ username }); //checks if the username exists
 
   if (!user) {
     throw Error("Username does not exist");
@@ -62,6 +62,27 @@ userSchema.statics.login = async function (username, password) {
   }
 
   return user;
+};
+
+userSchema.statics.adminLogin = async function (username, password) {
+  //check that all fields are filled
+  if (!username || !password) {
+    throw Error("Please complete all the fields");
+  }
+
+  const admin = await this.findOne({ username, isAdmin: true });
+
+  if (!admin) {
+    throw Error("Sorry, you are not an admin");
+  }
+
+  const match = await bcrypt.compare(password, admin.password);
+
+  if (!match) {
+    throw Error("Incorrect admin password");
+  }
+
+  return admin;
 };
 
 module.exports = mongoose.model("User", userSchema);
