@@ -1,4 +1,4 @@
-const Hotel = require("../models/Hotel");
+const Hotel = require("../models/Hotel"); // import the Hotel model
 
 //the available hotels are displayed using the get endpoint
 const getHotels = async (req, res) => {
