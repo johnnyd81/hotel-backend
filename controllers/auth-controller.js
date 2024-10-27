@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../models/User"); //import the User model
 const jwt = require("jsonwebtoken"); //authenticates a user before a user is allowed access to the app
 
 const signupUser = async (req, res) => {
