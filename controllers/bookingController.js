@@ -1,4 +1,4 @@
-const Booking = require("../models/Booking");
+const Booking = require("../models/Booking"); // import the Booking model
 
 //a new booking is created by a user in the frontend after they select a hotel and click the book now button
 const addBooking = async (req, res) => {
