@@ -1,6 +1,6 @@
 const User = require("../models/User"); // import the User model
 
-//getUsers displays all users in the admin dashboard
+//getUsers displays all the registered users in the admin dashboard
 const getUsers = async (req, res) => {
   try {
     const users = await User.find();
