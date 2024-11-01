@@ -50,6 +50,7 @@ userSchema.statics.login = async function (username, password) {
 
   const user = await this.findOne({ username }); //checks if the username exists
 
+  //if user doesn't exist throw an error
   if (!user) {
     throw Error("Username does not exist");
   }
