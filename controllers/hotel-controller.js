@@ -6,7 +6,7 @@ const getHotels = async (req, res) => {
   try {
     const hotels = await Hotel.find({
       ...others,
-      cheapestPrice: { $gt: min, $lt: max },
+      cheapestPrice: { $gte: min, $lte: max },
     });
     res.status(200).json(hotels);
   } catch (error) {
